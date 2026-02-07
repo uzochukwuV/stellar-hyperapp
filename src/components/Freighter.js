@@ -1,16 +1,22 @@
-import { signTransaction, setAllowed, getAddress, requestAccess , getUserInfo} from '@stellar/freighter-api';
-import * as StellarSdk from '@stellar/stellar-sdk';
+import {
+  signTransaction,
+  setAllowed,
+  getAddress,
+  requestAccess,
+} from "@stellar/freighter-api";
+import * as StellarSdk from "@stellar/stellar-sdk";
 
+const server = new StellarSdk.Horizon.Server(
+  "https://horizon-testnet.stellar.org",
+);
 
-const server = new StellarSdk.Horizon.Server('https://horizon-testnet.stellar.org');
+const checkConnection = async () => {
+  return await setAllowed();
+};
 
-const checkConnection = async () => { 
-    return await setAllowed();
-}
-
-const getRequestAccess = async () => { 
-    return await requestAccess();
-}
+const getRequestAccess = async () => {
+  return await requestAccess();
+};
 
 const retrievePublicKey = async () => {
   const { address } = await getAddress();
@@ -29,11 +35,17 @@ const getBalance = async () => {
   return xlm?.balance || "0";
 };
 
-const userSignTransaction = async (xdr, network, signWith) => {
+const userSignTransaction = async (xdr, signWith) => {
   return await signTransaction(xdr, {
-    network,
+    networkPassphrase: StellarSdk.Networks.TESTNET,
     accountToSign: signWith,
   });
 };
 
-export {checkConnection, retrievePublicKey, getBalance, userSignTransaction, getRequestAccess};
+export {
+  checkConnection,
+  retrievePublicKey,
+  getBalance,
+  userSignTransaction,
+  getRequestAccess,
+};

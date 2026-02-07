@@ -7,9 +7,8 @@ import {
   userInfo,
 } from "./Freighter";
 
-const Header = () => {
+const Header = ({ pubKey, setPubKey }) => {
   const [connected, setConnected] = useState(false);
-  const [publicKey, setPublicKey] = useState("");
   const [balance, setBalance] = useState("0");
 
   const connectWallet = async () => {
@@ -21,7 +20,7 @@ const Header = () => {
       const key = await retrievePublicKey();
       const bal = await getBalance();
 
-      setPublicKey(key);
+      setPubKey(key);
       setBalance(Number(bal).toFixed(2));
       setConnected(true);
     } catch (e) {
@@ -34,10 +33,10 @@ const Header = () => {
       <div className="text-3xl font-bold">Stellar dApp</div>
 
       <div className="flex items-center gap-4">
-        {publicKey && (
+        {pubKey && (
           <>
             <div className="p-2 bg-gray-50 border rounded-md">
-              {`${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`}
+              {`${pubKey.slice(0, 4)}...${pubKey.slice(-4)}`}
             </div>
 
             <div className="p-2 bg-gray-50 border rounded-md">
