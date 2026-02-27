@@ -1,1 +1,0 @@
-/mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/wasm32v1-none/release/club_minter.wasm: /mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/contracts/club-minter/src/lib.rs /mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/contracts/club-minter/src/test.rs
