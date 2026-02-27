@@ -1,0 +1,1 @@
+/mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/wasm32v1-none/release/fifa_game.wasm: /mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/contracts/fifa-game/src/lib.rs /mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/contracts/fifa-game/src/test.rs

@@ -1,0 +1,14 @@
+/mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/release/deps/serde-674f37d0a86e6af9.d: /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/release/build/serde-aefa9ec47cd09ba6/out/private.rs
+
+/mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/release/deps/libserde-674f37d0a86e6af9.rlib: /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/release/build/serde-aefa9ec47cd09ba6/out/private.rs
+
+/mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/release/deps/libserde-674f37d0a86e6af9.rmeta: /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/release/build/serde-aefa9ec47cd09ba6/out/private.rs
+
+/home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/home/uzo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/release/build/serde-aefa9ec47cd09ba6/out/private.rs:
+
+# env-dep:OUT_DIR=/mnt/e/apps/stellar-superapp/stellar-hyperapp/contracts/fifa-clubs/target/release/build/serde-aefa9ec47cd09ba6/out
