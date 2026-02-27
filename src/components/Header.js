@@ -1,39 +1,37 @@
 import React, { useState } from "react";
 import {
-  checkConnection,
-  retrievePublicKey,
+  connectWallet,
+  disconnectWallet,
   getBalance,
-  getRequestAccess,
+  stellar,
 } from "./Freighter";
 
 const Header = ({ pubKey, setPubKey }) => {
   const [connected, setConnected] = useState(false);
   const [balance, setBalance] = useState("0");
 
-  const connectWallet = async () => {
+  const handleConnect = async () => {
     try {
-      // first check if the extension is already allowed
-      let allowed = await checkConnection();
+      console.log("Connecting wallet...");
+      const key = await connectWallet();
+      console.log("Public Key:", key);
 
-      // if not allowed, request access (shows Freighter popup)
-      if (!allowed) {
-        allowed = await getRequestAccess();
-      }
-      if (!allowed) return alert("Permission denied");
-
-      const key = await retrievePublicKey();
-      const bal = await getBalance();
+      const bal = await getBalance(key);
+      console.log("Balance:", bal);
 
       setPubKey(key);
       setBalance(Number(bal).toFixed(2));
       setConnected(true);
     } catch (e) {
-      console.error(e);
+      console.error("Connection error:", e);
+      if (e.message !== "Wallet modal closed") {
+        alert("Connection failed: " + e.message);
+      }
     }
   };
 
-  const disconnectWallet = () => {
-    // we don't have a Freighter API to revoke from here, so just clear app state
+  const handleDisconnect = () => {
+    disconnectWallet();
     setPubKey("");
     setBalance("0");
     setConnected(false);
@@ -47,7 +45,7 @@ const Header = ({ pubKey, setPubKey }) => {
         {pubKey && (
           <>
             <div className="p-2 bg-gray-50 border rounded-md">
-              {`${pubKey.slice(0, 4)}...${pubKey.slice(-4)}`}
+              {stellar.formatAddress(pubKey)}
             </div>
 
             <div className="p-2 bg-gray-50 border rounded-md">
@@ -57,7 +55,7 @@ const Header = ({ pubKey, setPubKey }) => {
         )}
 
         <button
-          onClick={connected ? disconnectWallet : connectWallet}
+          onClick={connected ? handleDisconnect : handleConnect}
           className={`text-xl w-52 rounded-md p-4 font-bold text-white ${
             connected
               ? "bg-red-500 hover:bg-red-600"

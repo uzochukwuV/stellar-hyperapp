@@ -1,3 +1,5 @@
+![Stellar dApp Screenshot](public/screenshot1.jpg)
+
 # Stellar White Belt dApp
 
 This repository contains a simple Stellar-based frontend built with React and TailwindCSS that fulfills the requirements for **Level 1 – White Belt** of the Stellar development challenge. The app runs on the **Stellar testnet** and demonstrates wallet integration, balance display, and basic XLM transactions using the Freighter wallet.
