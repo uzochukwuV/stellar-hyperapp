@@ -92,6 +92,8 @@ https://stellar.expert/explorer/testnet/tx/eafe6be42a4cd73f46bb3b22e9ebcec1c631b
 ✅ Link!
 https://stellar-hyperapp.vercel.app/
 
+✅ Video!
+https://youtu.be/_GLvslUjLmY
 
 NftMinter.js - Service layer with 3 error types:
 
