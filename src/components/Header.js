@@ -4,7 +4,6 @@ import {
   retrievePublicKey,
   getBalance,
   getRequestAccess,
-  userInfo,
 } from "./Freighter";
 
 const Header = ({ pubKey, setPubKey }) => {
@@ -13,8 +12,13 @@ const Header = ({ pubKey, setPubKey }) => {
 
   const connectWallet = async () => {
     try {
-      const allowed = await checkConnection();
+      // first check if the extension is already allowed
+      let allowed = await checkConnection();
 
+      // if not allowed, request access (shows Freighter popup)
+      if (!allowed) {
+        allowed = await getRequestAccess();
+      }
       if (!allowed) return alert("Permission denied");
 
       const key = await retrievePublicKey();
@@ -26,6 +30,13 @@ const Header = ({ pubKey, setPubKey }) => {
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const disconnectWallet = () => {
+    // we don't have a Freighter API to revoke from here, so just clear app state
+    setPubKey("");
+    setBalance("0");
+    setConnected(false);
   };
 
   return (
@@ -46,15 +57,14 @@ const Header = ({ pubKey, setPubKey }) => {
         )}
 
         <button
-          onClick={connectWallet}
-          disabled={connected}
+          onClick={connected ? disconnectWallet : connectWallet}
           className={`text-xl w-52 rounded-md p-4 font-bold text-white ${
             connected
-              ? "bg-green-500 cursor-not-allowed"
+              ? "bg-red-500 hover:bg-red-600"
               : "bg-blue-400 hover:bg-blue-500"
           }`}
         >
-          {connected ? "Connected" : "Connect Wallet"}
+          {connected ? "Disconnect" : "Connect Wallet"}
         </button>
       </div>
     </div>

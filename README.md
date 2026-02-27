@@ -1,84 +1,81 @@
-## Project Name: Anonymous Feedback dApp
+# Stellar White Belt dApp
 
-A full-stack decentralized application (dApp) built on the Stellar blockchain. Users can utilize this dApp to register anonymous feedback. The smart contract includes logic to automatically assign unique IDs to each newly created feedback, and these registered feedback entries can be accessed using their respective feedback IDs.
----
-## Table of content:
-- Technologies Used
-- Smart-contract Info
-- ⚠️ Issue
-- Project Setup Guide
+This repository contains a simple Stellar-based frontend built with React and TailwindCSS that fulfills the requirements for **Level 1 – White Belt** of the Stellar development challenge. The app runs on the **Stellar testnet** and demonstrates wallet integration, balance display, and basic XLM transactions using the Freighter wallet.
 
----
-## Technologies Used:
-- Smartcontract : Rust, Soroban-SDK
-- Wallet : Freighter (available as a chrome-extension)
-- Frontend : ReactJS, TailwindCSS
-- Integeration : Stellar-SDK
----
-
-## Smart-contract Info:
-
-- All the materials related to the smart contract can be found in the ```anonymous-feedback-smartcontract``` folder:
-
-- The path to the smart contract is:  ```./anonymous-feedback-smartcontract/contracts/hello_world/src/lib.rs```
-
-
-### Deployed smartcontract address: ```CBHLCEAS7RULUOMVBH2C7C5PMXMBWJSNYBE3S5W2U5GWIGXICJ4RMVHG``` 
-[View in contract-explorer](https://lab.stellar.org/r/testnet/contract/CBHLCEAS7RULUOMVBH2C7C5PMXMBWJSNYBE3S5W2U5GWIGXICJ4RMVHG)
-
-### Functions written inside the Anonymous Feedback Smartcontract: 
-
-1. ```send_feedback(env: Env, feedback_msg: String) -> u64``` : Takes a feedback message (of type ```String```) as an argument, assigns a unique ID to each feedback, stores the feedback on the blockchain, and returns the feedback ID for the newly created entry. 
-
-2. ```fetch_feedback(env: Env, fb_id: u64) -> Feedback``` : Takes a feedback ID (of type ```u64```) as an argument and returns the feedback associated with the specified ID.
+> ✨ **Features implemented**
+> - Connect & disconnect a Freighter wallet
+> - Display connected account’s public key and XLM balance
+> - Send XLM payments to any address on testnet
+> - Show success/failure feedback and transaction hash
 
 ---
 
-## ⚠️ Issue:
-
-### Title: 
-Getting ```undefined``` When Fetching Data from the Blockchain Using Stellar-SDK
-
-### Note:
-Both setter (```send_feedback()```) and getter (```fetch_feedback()```) functions work as expected when invoked from the terminal using Stellar-CLI.
-
-### Issue Description: 
-The getter smart contract function (```fetch_feedback()```) returns undefined when invoked using the JavaScript interaction function (```fetchFeedback()```) built with Stellar-SDK (located in the Soroban.js file). This issue persists despite the function being correctly invoked.
-
-Additionally, while I am able to store data on the blockchain using the setter smart contract function (```send_feedback()```) through the ```sendFeedback()``` interaction function, this function also returns undefined instead of the expected object.
- 
-The transaction builder function and all interaction functions are implemented in the Soroban.js file.
-- Path to ```Soroban.js``` file: ```src/components/Soroban.js```
-
-### NOTE: 
-I have followed the Stellar documentation mentioned below to create the transaction builder function:
-https://developers.stellar.org/docs/build/guides/transactions/invoke-contract-tx-sdk
+## ✅ Requirements Checklist
+1. **Wallet Setup**
+   - Uses Freighter wallet (Testnet).
+   - Prompt for permission when connecting.
+2. **Wallet Connection**
+   - "Connect Wallet" button triggers Freighter popup.
+   - "Disconnect" clears the session.
+3. **Balance Handling**
+   - Balance is fetched from Horizon and displayed with 2‑decimal precision.
+4. **Transaction Flow**
+   - Payment form accepts destination and amount.
+   - Transaction built, signed in Freighter and submitted to testnet.
+   - UI displays success or failure with hash or error message.
+5. **Development Standards**
+   - Clean React components and error handling.
+   - Uses `@stellar/stellar-sdk` and `@stellar/freighter-api`.
 
 ---
 
-## Screenshots of Issue (You can reproduce the issue by following the screenshots):
-1. Creating a Feedback and Storing it onchain by invoking the ```send_feedback()``` smartcontract function:
-   ![image](https://github.com/user-attachments/assets/83bfebed-4b14-4ff9-b38d-575c9e89f9e2)
+## 🛠 Technologies Used
 
-   Result:
-   - Expected output: ```4```
-   - Output got: ```Undefined```
-   ![image](https://github.com/user-attachments/assets/e0623442-1a5f-4773-8a53-adb7ecf90f9d)
-
-3. Fetching a feedback with feedback-id ```4``` by invoking the ```fetch_feedback()``` smartcontract function:
-   ![image](https://github.com/user-attachments/assets/1baba311-3c23-425e-977f-da052c90af54)
-
-   Result:
-   - Expected output: ```Feedback Number 4```
-   - Output got: ```Undefined```
-   ![image](https://github.com/user-attachments/assets/c33ae590-1a3a-44c2-9501-35b92b1f9dda)
-
+- **Frontend**: React.js, TailwindCSS
+- **Wallet**: Freighter (Chrome extension)
+- **Blockchain SDK**: `@stellar/stellar-sdk`, `@stellar/freighter-api`
 
 ---
 
-## Project Setup Guide:
-1. Install NodeJS, Rust, Stellar-CLI
-2. Install Freighter Wallet chrome extension.
-3. Clone the repository : ```git clone https://github.com/bhupendra-chouhan/Anonymous-Feedback-Soroban.git```
-4. Install Dependencies: ```npm install```
-5. Start the project: ```npm run start```
+## 🏁 Getting Started
+
+```bash
+# clone the repo
+git clone https://github.com/uzochukwuV/stellar-hyperapp.git
+cd stellar-hyperapp
+
+# install dependencies
+npm install
+
+# start development server
+npm run start
+```
+
+1. Open http://localhost:3000 in your browser.
+2. Install the [Freighter](https://freighter.app/) extension if you haven’t already and switch to **Testnet**.
+3. Use the **Connect Wallet** button in the header to authorize the dApp.
+4. Once connected, your public key and balance appear.
+5. Enter a destination address and amount, then click **Send**.
+6. Observe the transaction feedback area for results.
+
+---
+
+## 📸 Screenshots
+*(You should replace these with actual screenshots before submission)*
+
+- Wallet connected state
+- Balance displayed
+- Successful testnet transaction
+- Transaction result shown to the user
+
+---
+
+## 📁 File Structure Highlights
+
+- `src/components/Header.js` – connection/disconnection and balance UI
+- `src/components/PaymentForm.js` – simple payment workflow
+- `src/components/Freighter.js` – Freighter helper functions
+
+---
+
+Good luck with your submission! 🚀

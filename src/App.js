@@ -2,8 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import { useState, createContext } from 'react';
-import {SendFeedback} from './components/SendFeedback';
-import {FetchFeedback} from './components/FetchFeedback';
+import PaymentForm from './components/PaymentForm';
 
 const pubKeyData = createContext();
 
@@ -15,9 +14,8 @@ function App() {
     <div className="App">
       <Header pubKey={pubKey} setPubKey={_setPubKey} />
       <pubKeyData.Provider value={pubKey}>
-        <div>
-          <SendFeedback />
-          <FetchFeedback />
+        <div className="p-4">
+          <PaymentForm />
         </div>
       </pubKeyData.Provider>
     </div>

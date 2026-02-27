@@ -42,10 +42,49 @@ const userSignTransaction = async (xdr, signWith) => {
   });
 };
 
+// helper that builds, signs and submits a simple XLM payment
+const sendPayment = async (destination, amount) => {
+  // ensure Freighter has permission
+  await setAllowed();
+
+  // get the public key of the current account
+  const { address: source } = await getAddress();
+
+  // load the source account from testnet
+  const account = await server.loadAccount(source);
+
+  // construct transaction
+  const tx = new StellarSdk.TransactionBuilder(account, {
+    fee: await server.fetchBaseFee(),
+    networkPassphrase: StellarSdk.Networks.TESTNET,
+  })
+    .addOperation(
+      StellarSdk.Operation.payment({
+        destination,
+        asset: StellarSdk.Asset.native(),
+        amount: amount.toString(),
+      })
+    )
+    .setTimeout(30)
+    .build();
+
+  // sign via Freighter
+  const signed = await userSignTransaction(tx.toXDR(), source);
+  const signedTx = StellarSdk.TransactionBuilder.fromXDR(
+    signed.signedTxXdr,
+    StellarSdk.Networks.TESTNET,
+  );
+
+  // submit to testnet
+  const result = await server.submitTransaction(signedTx);
+  return result;
+};
+
 export {
   checkConnection,
   retrievePublicKey,
   getBalance,
   userSignTransaction,
   getRequestAccess,
+  sendPayment,
 };
