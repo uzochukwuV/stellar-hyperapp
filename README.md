@@ -81,3 +81,26 @@ npm run start
 ---
 
 Good luck with your submission! 🚀
+
+
+![Stellar dApp Screenshot](public/walletoption.jpg)
+
+✅ Deployed!
+CAGXJUI4GWABBGDQK5XWCYMLBOW77ABCBAAZWI5KXBLQ73FPCD7BDGMG
+✅ TX hash!
+https://stellar.expert/explorer/testnet/tx/eafe6be42a4cd73f46bb3b22e9ebcec1c631b4de759cd277b0c20d3b9c64db54
+✅ Link!
+https://stellar-hyperapp.vercel.app/
+
+
+NftMinter.js - Service layer with 3 error types:
+
+WalletNotFoundError (yellow warning)
+TransactionRejectedError (blue info)
+InsufficientBalanceError (red error)
+Transaction status tracking: IDLE → PREPARING → SIGNING → SUBMITTING → PENDING → SUCCESS/FAILED
+NFTMinterForm.js - Mint form with image preview and real-time status
+
+NFTGallery.js - Display minted NFTs in a grid
+
+App.js - Updated to include NFT components
