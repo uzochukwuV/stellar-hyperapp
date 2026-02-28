@@ -306,6 +306,150 @@ export function getErrorType(error) {
   return "error";
 }
 
+/* ================= Match Functions ================= */
+
+/**
+ * Create a match challenge
+ */
+export async function createMatch(caller, clubId, tactics, onStatusChange) {
+  const [t1, t2, t3] = tactics;
+  const values = [
+    addressToScVal(caller),
+    numberToU64(clubId),
+    nativeToScVal(t1, { type: "u32" }),
+    nativeToScVal(t2, { type: "u32" }),
+    nativeToScVal(t3, { type: "u32" }),
+  ];
+
+  const { result, hash } = await gameContractCall(
+    caller,
+    "create_match",
+    values,
+    onStatusChange
+  );
+
+  return { matchId: Number(result), hash };
+}
+
+/**
+ * Accept and resolve a match
+ */
+export async function acceptMatch(caller, matchId, clubId, tactics, onStatusChange) {
+  const [t1, t2, t3] = tactics;
+  const values = [
+    addressToScVal(caller),
+    numberToU64(matchId),
+    numberToU64(clubId),
+    nativeToScVal(t1, { type: "u32" }),
+    nativeToScVal(t2, { type: "u32" }),
+    nativeToScVal(t3, { type: "u32" }),
+  ];
+
+  const { result, hash } = await gameContractCall(
+    caller,
+    "accept_match",
+    values,
+    onStatusChange
+  );
+
+  return {
+    match: parseMatchResult(result),
+    hash,
+  };
+}
+
+/**
+ * Get match by ID
+ */
+export async function getMatch(caller, matchId, onStatusChange) {
+  const value = numberToU64(matchId);
+
+  const { result } = await gameContractCall(
+    caller,
+    "get_match",
+    value,
+    onStatusChange
+  );
+
+  return parseMatchResult(result);
+}
+
+/**
+ * Get all open matches
+ */
+export async function getOpenMatches(caller, onStatusChange) {
+  const { result } = await gameContractCall(
+    caller,
+    "get_open_matches",
+    null,
+    onStatusChange
+  );
+
+  return result.map(Number);
+}
+
+/**
+ * Get player's match history
+ */
+export async function getPlayerMatches(caller, playerAddress, onStatusChange) {
+  const value = addressToScVal(playerAddress);
+
+  const { result } = await gameContractCall(
+    caller,
+    "get_player_matches",
+    value,
+    onStatusChange
+  );
+
+  return result.map(Number);
+}
+
+/**
+ * Cancel an open match
+ */
+export async function cancelMatch(caller, matchId, onStatusChange) {
+  const values = [
+    addressToScVal(caller),
+    numberToU64(matchId),
+  ];
+
+  const { hash } = await gameContractCall(
+    caller,
+    "cancel_match",
+    values,
+    onStatusChange
+  );
+
+  return { hash };
+}
+
+/**
+ * Parse match result from contract
+ */
+function parseMatchResult(result) {
+  return {
+    id: Number(result.id),
+    challenger: result.challenger.toString(),
+    challengerClub: Number(result.challenger_club),
+    challengerTactics: [
+      Number(result.challenger_tactics[0]),
+      Number(result.challenger_tactics[1]),
+      Number(result.challenger_tactics[2]),
+    ],
+    opponent: result.opponent?.toString() || null,
+    opponentClub: Number(result.opponent_club),
+    opponentTactics: result.opponent_tactics ? [
+      Number(result.opponent_tactics[0]),
+      Number(result.opponent_tactics[1]),
+      Number(result.opponent_tactics[2]),
+    ] : [0, 0, 0],
+    status: Number(result.status), // 0=Open, 1=Completed, 2=Cancelled
+    winnerClub: Number(result.winner_club),
+    roundsWon: [Number(result.rounds_won[0]), Number(result.rounds_won[1])],
+    createdAt: Number(result.created_at),
+  };
+}
+
 /**
  * Get stat color based on value
  */

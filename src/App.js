@@ -6,6 +6,8 @@ import NFTMinterForm from './components/NFTMinterForm';
 import NFTGallery from './components/NFTGallery';
 import ClubMinterForm from './components/ClubMinterForm';
 import ClubGallery from './components/ClubGallery';
+import MatchArena from './components/MatchArena';
+import MatchHistory from './components/MatchHistory';
 
 const pubKeyData = createContext();
 
@@ -25,6 +27,7 @@ function App() {
 
   const tabs = [
     { id: "fifa", label: "FIFA Clubs", icon: "⚽" },
+    { id: "arena", label: "Arena", icon: "⚔️" },
     { id: "nft", label: "NFT Minter", icon: "🎨" },
     { id: "payment", label: "Payments", icon: "💸" },
   ];
@@ -66,6 +69,21 @@ function App() {
               </div>
 
               <ClubGallery refreshTrigger={clubRefreshTrigger} />
+            </div>
+          )}
+
+          {/* Arena Tab */}
+          {activeTab === "arena" && (
+            <div>
+              <div className="text-center mb-4 sm:mb-6">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">⚔️ Battle Arena</h1>
+                <p className="text-gray-500 mt-1 sm:mt-2 text-sm sm:text-base">Challenge opponents with tactics! Best of 3 rounds.</p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <MatchArena />
+                <MatchHistory />
+              </div>
             </div>
           )}
 
