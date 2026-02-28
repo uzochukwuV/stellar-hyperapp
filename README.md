@@ -133,3 +133,6 @@ NFT -- CARU6CJJIY2HZPQEOOVVFZY5QO23NAGAUHCXJDHTD6PLRCXNC5Y43FH2
 
 Screenshot or badge: CI/CD pipeline running
 ![Stellar dApp Screenshot](public/cid.jpg)
+
+Screenshot: mobile responsive view
+![Stellar dApp Screenshot](public/mobile.jpg)
