@@ -132,3 +132,4 @@ https://stellar-hyperapp.vercel.app/
 NFT -- CARU6CJJIY2HZPQEOOVVFZY5QO23NAGAUHCXJDHTD6PLRCXNC5Y43FH2
 
 Screenshot or badge: CI/CD pipeline running
+![Stellar dApp Screenshot](public/cid.jpg)
