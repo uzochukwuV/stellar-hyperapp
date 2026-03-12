@@ -8,6 +8,7 @@ import ClubMinterForm from './components/ClubMinterForm';
 import ClubGallery from './components/ClubGallery';
 import MatchArena from './components/MatchArena';
 import MatchHistory from './components/MatchHistory';
+import StellarP2P from './components/StellarP2P';
 
 const pubKeyData = createContext();
 
@@ -15,7 +16,7 @@ function App() {
   const [pubKey, _setPubKey] = useState("");
   const [nftRefreshTrigger, setNftRefreshTrigger] = useState(0);
   const [clubRefreshTrigger, setClubRefreshTrigger] = useState(0);
-  const [activeTab, setActiveTab] = useState("fifa");
+  const [activeTab, setActiveTab] = useState("p2p");
 
   const handleNftMintSuccess = () => {
     setNftRefreshTrigger(prev => prev + 1);
@@ -26,6 +27,7 @@ function App() {
   };
 
   const tabs = [
+    { id: "p2p", label: "StellarP2P", icon: "⚡" },
     { id: "fifa", label: "FIFA Clubs", icon: "⚽" },
     { id: "arena", label: "Arena", icon: "⚔️" },
     { id: "nft", label: "NFT Minter", icon: "🎨" },
@@ -55,6 +57,13 @@ function App() {
               </button>
             ))}
           </div>
+
+          {/* StellarP2P Tab */}
+          {activeTab === "p2p" && (
+            <div className="-m-2 sm:-m-4">
+              <StellarP2P />
+            </div>
+          )}
 
           {/* FIFA Clubs Tab */}
           {activeTab === "fifa" && (
